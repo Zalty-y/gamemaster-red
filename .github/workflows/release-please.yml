@@ -1,0 +1,36 @@
+# One release train for the whole repo (service + plugin-paper).
+# On merge to main: open/update the Release PR; merging it tags vX.Y.Z,
+# writes CHANGELOG.md, and bumps pyproject.toml. Publish steps hook the tag.
+name: release-please
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    outputs:
+      release_created: ${{ steps.rp.outputs.release_created }}
+      tag_name: ${{ steps.rp.outputs.tag_name }}
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: rp
+        with:
+          config-file: .release-please-config.json
+          manifest-file: .release-please-manifest.json
+
+  # Placeholder: PyPI wheel + ghcr image publish on tag. Enable alongside the
+  # real build (ARCHITECTURE.md §12.5/§12.3); until then publishing by hand is
+  # allowed — the tag + CHANGELOG are the contract.
+  publish:
+    needs: release-please
+    if: needs.release-please.outputs.release_created
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "release ${{ needs.release-please.outputs.tag_name }} tagged; publish job pending real build"

@@ -1,0 +1,29 @@
+# lefthook — local gates for the conventions in CONTRIBUTING.md
+#
+# Hooks are a convenience: `git commit --no-verify` bypasses them.
+# The same rules run in CI (.github/workflows/conventions.yml) via the same
+# script, so bypassing a hook moves the failure to the PR, not past it.
+#
+# Install once per clone:  scripts/install-hooks.sh
+# Interpreter discovery (python3/uv) lives in scripts/run-validator.sh —
+# git hooks get a bare environment, so we never trust PATH.
+
+commit-msg:
+  commands:
+    conventional:
+      # hard block: bad messages die here
+      run: bash scripts/run-validator.sh --mode commit --msg-file "{1}"
+
+pre-push:
+  commands:
+    branch-name:
+      # warn only (branch mode exits 0 unless --strict-branch)
+      run: bash scripts/run-validator.sh --mode branch
+
+post-checkout:
+  commands:
+    branch-name:
+      run: bash scripts/run-validator.sh --mode branch
+      skip:
+        - merge
+        - rebase

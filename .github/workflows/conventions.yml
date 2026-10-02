@@ -1,0 +1,29 @@
+# CI mirror of the lefthook hooks — hooks can be bypassed, this can't.
+# Same script, same rules: scripts/check_conventions.py
+name: conventions
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0   # range mode needs the base ref
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # PR title == the squash-commit message that will land on main
+      - name: PR title grammar
+        if: github.event_name == 'pull_request'
+        run: python scripts/check_conventions.py --mode pr-title
+
+      # Every non-merge commit on the branch/push
+      - name: Commit message grammar
+        run: python scripts/check_conventions.py --mode range
