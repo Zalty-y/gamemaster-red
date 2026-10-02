@@ -1,0 +1,178 @@
+# ---------------------------------------------------------------------------
+# gamemaster-red — ignore rules
+#
+# Layout (ARCHITECTURE.md §11): service/ (Python, LangGraph), plugin-paper/
+# (Gradle), schema/, prompts/, testdata/. Rules are scoped to those dirs where
+# a blanket pattern could swallow committed source or fixtures.
+# ---------------------------------------------------------------------------
+
+# --- OS -------------------------------------------------------------------
+.DS_Store
+._*
+.Spotlight-V100
+.Trashes
+Thumbs.db
+desktop.ini
+
+# --- Editors / shells / patches -------------------------------------------
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+*.swp
+*.swo
+*~
+\#*\#
+.\#*
+*.orig
+*.rej
+.history/
+
+# --- Python: build & packaging (service/) ---------------------------------
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+build/
+dist/
+wheels/
+sdist/
+*.egg-info/
+.eggs/
+MANIFEST
+pip-wheel-metadata/
+
+# --- Python: uv (decided package manager — ARCHITECTURE.md §12.5) ----------
+# uv.lock and .python-version are TRACKED: uv reads .python-version to pick the
+# interpreter, so pinning it is what makes `uv sync` reproducible for a
+# contributor. Neither is ignored here; don't add them back.
+.venv/
+/.venv*/
+# root-anchored so a nested src/lib/ or bin/ stays tracked
+/env
+/venv
+pyvenv.cfg
+/.conda
+/conda-env
+
+# --- Python: tooling caches ------------------------------------------------
+.pytest_cache/
+.mypy_cache/
+.dmypy.json
+.ruff_cache/
+.pyright/
+.pydantic/
+.hypothesis/
+.ipynb_checkpoints/
+.tox/
+.nox/
+
+# --- Python: coverage / test artifacts -------------------------------------
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+.profiling/
+nosetests.xml
+
+# --- Docker / Compose ------------------------------------------------------
+# compose.yml + compose.demo.yml are shipped and tracked (§12.3): only the
+# per-machine overlays that `init --docker` generates are local.
+compose.override.yml
+compose.override.yaml
+compose.local.yml
+.docker/
+
+# --- Secrets & per-install config ------------------------------------------
+# `gamemaster-red init` writes a per-install config; commit the example only.
+/config
+/config.toml
+/config.local.toml
+*.local.toml
+!config.example.toml
+!config.example.yml
+!config.sample.toml
+.env
+.env.*
+!.env.example
+!.env.sample
+secrets/
+*.pem
+*.key
+*.p12
+*.pfx
+
+# --- Runtime state: never commit a live install's data ---------------------
+# SQLite memory store (§6.3): events, sessions, context_buffer, triggers
+*.sqlite
+*.sqlite3
+*.db3
+*-wal
+*-shm
+*-journal
+*.db
+!testdata/**/*.db
+
+# Audit JSONL (§6.2) and run logs — fixtures under testdata/ stay tracked
+audit*.jsonl
+*.jsonl.gz
+!testdata/**/*.jsonl
+nohup.out
+
+# Adapter A tail offset / resume state (§4.1) — per-install, ephemeral
+/state/
+/.gmasterrc.local
+*.offset
+
+# --- Java / Gradle (plugin-paper/) ----------------------------------------
+.gradle/
+plugin-paper/.gradle/
+plugin-paper/build/
+plugin-paper/bin/
+plugin-paper/obj/
+plugin-paper/libs/
+plugin-paper/run/
+plugin-paper/.idea/
+gradle-app.setting
+*.class
+*.war
+*.ear
+*.jmod
+*.hprof
+repl/
+.factorypath
+.apt_generated/
+.settings/
+.project
+.classpath
+*.launch
+.scala_build
+.scala_dependencies
+.worksheet
+dependency-reduced-pom.xml
+
+# Built plugin artifacts (keep the Gradle wrapper jar)
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+!**/gradle/wrapper/gradle-wrapper.jar
+
+# --- Minecraft server run in-tree for smoke tests (§9.3) ------------------
+/server/
+/servers/
+world/
+world_nether/
+world_the_end/
+logs/
+usercache.json
+bundler/
+*.log.gz
+
+# --- Vendored / downloaded data (modpack REI/JEI dumps, wiki cache) --------
+cache/
+/data/raw/
+/data/downloads/
+
+# --- Docs / site builds ----------------------------------------------------
+site/
+docs/_build/
+docs/build/
