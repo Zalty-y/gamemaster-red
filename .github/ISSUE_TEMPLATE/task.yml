@@ -1,0 +1,33 @@
+name: Task (agent or human)
+description: Scoped unit of work — the default template
+labels: []
+body:
+  - type: dropdown
+    id: area
+    attributes:
+      label: Area
+      description: becomes the `area/*` label and the commit scope
+      options:
+        - service
+        - adapter-logtail
+        - adapter-bridge
+        - schema
+        - tools
+        - config
+        - docker
+        - deps
+        - ci
+        - docs
+    validations: { required: true }
+  - type: textarea
+    id: change
+    attributes:
+      label: Change
+      description: what to add/remove/fix, and which files/symbols
+    validations: { required: true }
+  - type: textarea
+    id: acceptance
+    attributes:
+      label: Acceptance
+      description: observable result that proves it's done (command run → output seen)
+    validations: { required: true }

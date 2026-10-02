@@ -1,0 +1,13 @@
+# gamemaster-red — the only packaging config in the repo (ARCHITECTURE.md §12.5).
+# `version` is owned by release-please; never bump it by hand.
+
+[project]
+name = "gamemaster-red"
+version = "0.0.0"
+description = "The AI gamemaster layer for your Minecraft server — meet Red."
+readme = "README.md"
+license = "MIT"
+requires-python = ">=3.12"
+
+[dependency-groups]
+dev = []

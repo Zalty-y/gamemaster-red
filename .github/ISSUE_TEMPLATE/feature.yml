@@ -1,0 +1,16 @@
+name: Feature request
+description: Something Red should do
+labels: ["type/feat"]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem this solves
+      description: the server-operator pain, not the implementation
+    validations: { required: true }
+  - type: textarea
+    id: wish
+    attributes:
+      label: What you'd type / see
+      description: concrete in-game or CLI exchange
+    validations: { required: true }
