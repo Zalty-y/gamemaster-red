@@ -46,7 +46,8 @@ gh pr create --title "fix(adapter-logtail): resume tail after rotation" \
 
 ## Invariants
 
-- Never commit directly on `main`.
+- Never commit directly on `main` — server-side branch protection rejects
+  the push (`enforce_admins`); every change enters via a green-PR squash merge.
 - Never `--no-verify` to "fix" a hook error — fix the message; CI enforces
   identically, the bypass only delays the failure.
 - Branch name violations **warn** (rename: `git branch -m ...`); commit

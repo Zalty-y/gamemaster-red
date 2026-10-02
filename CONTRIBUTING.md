@@ -40,6 +40,14 @@ issue #42 ──▶ branch feat/42-log-tail-rotation ──▶ PR #43 (title = c
 
 Long-lived branch names exempt from the grammar: `main`, `release/…`.
 
+**`main` is protected** (GitHub branch protection, admins included): changes
+arrive only through a PR whose `check` job is green and whose commits
+pass the grammar, merged by **squash only** (merge commits and rebase-merge
+are disabled repo-wide). Force-push and deletion are off — history on `main`
+is append-only, which is what release-please and the `@0.3` pin channel rely
+on. If you're mid-work and `main` moved, `git merge main` into your branch
+(`strict` checks require the PR to sit on current `main` anyway).
+
 ## 2. Commit grammar
 
 ```
