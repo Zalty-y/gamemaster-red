@@ -86,7 +86,7 @@ notes are where operators learn to read the diff.
 | `docker` | Dockerfile, compose files |
 | `deps` | `uv.lock`, `.python-version` |
 | `ci` | workflows, hooks, release automation |
-| `docs` | README, ARCHITECTURE.md, this file |
+| `docs` | README, ARCHITECTURE.md, MVP.md, this file |
 
 Scope may be omitted (`chore: typo in README`); the slash-set may not be
 invented. The same strings are the `area/*` issue labels and the changelog
