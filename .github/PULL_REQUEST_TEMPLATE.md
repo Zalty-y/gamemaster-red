@@ -16,6 +16,12 @@ How this was actually run and observed (not just "tests pass"):
 
 ## Release impact
 
-- [ ] User-visible feature (`feat`) — minor bump
-- [ ] Fix (`fix`) — patch bump
-- [ ] Breaking user-facing change — add `BREAKING CHANGE:` footer to the squash commit body
+Pick one (the bot computes the bump from the squash-commit type — this is
+what it will actually do):
+
+- [ ] `feat` — minor bump (`0.0.x` → `0.1.0` for the first one)
+- [ ] `fix` / `perf` — patch bump
+- [ ] `docs` / `refactor` / `revert` — patch bump
+- [ ] Breaking user-facing change (pre-1.0) — `!` in title **and**
+      `BREAKING CHANGE:` footer in the squash body → minor bump
+- [ ] `chore` / `test` / `build` / `ci` alone — no release
