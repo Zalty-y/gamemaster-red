@@ -56,11 +56,19 @@ gh pr create --title "fix(adapter-logtail): resume tail after rotation" \
   "agent:claimed"` so humans and other agents see it's taken.
 - One issue → one PR → one squash commit. Split the issue if you need two.
 - Version numbers and `CHANGELOG.md` are bot-owned: never edit
-  `pyproject.toml` `version` or changelog by hand.
+  `pyproject.toml` `version` or changelog by hand (one exception: the
+  2026-10-06 seeding of the 0.0.0 baseline — see CONTRIBUTING §3).
 
 ## Release model (what your commit causes)
 
-`feat` → minor · `fix`/`perf` → patch · `!`/`BREAKING CHANGE:` pre-1.0 →
-minor (documented in release notes) · everything else → no bump. Merging your
-PR to `main` adds it to the open Release PR; whoever merges the Release PR cuts
-the tag. Nothing else to do.
+Per commit, on merge to `main` (source-verified against release-please):
+`feat` → minor · `fix`/`perf` → patch · `docs`/`refactor`/`revert` → patch ·
+`!`/`BREAKING CHANGE:` pre-1.0 → minor · `chore`/`test`/`build`/`ci` alone →
+no release (hidden in changelog → release skipped). Merging your PR adds it
+to the open Release PR. The Release PR needs a `@Zalty-y` code-owner approval
+(CODEOWNERS on CHANGELOG.md/manifest) — **only a human merges it**; never use
+`gh pr merge --admin` on a Release PR.
+
+Baseline: `0.0.0` seeded manually 2026-10-06 (first release was auto-named
+0.1.0 by release-please's Python strategy regardless of commit types).
+Docs/fix land as `0.0.x`; the first `feat` earns `0.1.0`.
