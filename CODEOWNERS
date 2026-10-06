@@ -1,0 +1,8 @@
+# Release-train gate: PRs touching these paths need a @Zalty-y approval
+# (branch protection "require review from Code Owners"). release-please
+# authors the Release PR as github-actions[bot], so @Zalty-y can approve it;
+# agents must never merge a Release PR, --admin included (enforce_admins).
+# pyproject.toml is deliberately NOT owned here: deps PRs stay agent-mergeable.
+
+/CHANGELOG.md @Zalty-y
+/.release-please-manifest.json @Zalty-y

@@ -36,7 +36,11 @@ issue #42 ──▶ branch feat/42-log-tail-rotation ──▶ PR #43 (title = c
 5. **Merge to `main` updates the release-please Release PR.** Merging *that*
    (or merging several at once — it batches) cuts `vX.Y.Z`, writes
    `CHANGELOG.md`, bumps `pyproject.toml`, and publishes (once the publish
-   job is real). No release day, no hand-edited changelog.
+   job is real). No release day, no hand-edited changelog. The Release PR
+   additionally waits on a `@Zalty-y` approval — `CHANGELOG.md` and
+   `.release-please-manifest.json` are code-owner-gated (`CODEOWNERS`), and
+   `enforce_admins` binds everyone, so no `--admin` escape: the train moves
+   only when a human clicks merge.
 
 Long-lived branch names exempt from the grammar: `main`, `release/…`.
 
@@ -103,8 +107,19 @@ grouping — change the vocabulary only deliberately, in one commit that touches
   change until 1.0.
 - The envelope `v` field is a **separate axis** — wire compatibility is
   negotiated via `hello.capabilities` (docs/ARCHITECTURE.md §8), not git tags.
+- What bumps what (verified against release-please's default strategy):
+  `feat` → minor · `fix`/`perf` → patch · `docs`/`refactor`/`revert` → patch ·
+  breaking (`!` or `BREAKING CHANGE:`) → minor pre-1.0 · `chore`/`test`/
+  `build`/`ci` **alone** → no release at all (hidden changelog sections make
+  the release empty, and release-please skips empty releases). Docs changes
+  therefore do produce a release — a patch, e.g. `0.0.0` → `0.0.1`.
+- The baseline `0.0.0` was seeded by hand on 2026-10-06 because release-please
+  names the *first* Python release `0.1.0` no matter the commit mix. This one
+  edit to manifest/`pyproject`/changelog is the only exception to the rule
+  below; it is recorded in the release-notes of `v0.0.0`.
 - Never hand-edit `version` in `pyproject.toml` or `CHANGELOG.md`;
-  release-please owns them.
+  release-please owns them. Only `@Zalty-y` may approve/merge a Release PR
+  (`CODEOWNERS` + `enforce_admins`) — agents propose, humans release.
 
 ## 4. Setup
 
