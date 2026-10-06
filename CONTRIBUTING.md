@@ -78,7 +78,7 @@ notes are where operators learn to read the diff.
 | scope | covers |
 |---|---|
 | `service` | core pipeline, sessions, memory, triggers |
-| `adapter-logtail` | log tail + RCON adapter (ARCHITECTURE.md §4) |
+| `adapter-logtail` | log tail + RCON adapter (docs/ARCHITECTURE.md §4) |
 | `adapter-bridge` | Paper bridge plugin, `plugin-paper/` (§5) |
 | `schema` | envelope contract, `schema/` (§3) |
 | `tools` | wiki, crafting KB, MCP, tool API |
@@ -86,7 +86,7 @@ notes are where operators learn to read the diff.
 | `docker` | Dockerfile, compose files |
 | `deps` | `uv.lock`, `.python-version` |
 | `ci` | workflows, hooks, release automation |
-| `docs` | README, ARCHITECTURE.md, MVP.md, this file |
+| `docs` | README, docs/ARCHITECTURE.md, docs/MVP.md, this file |
 
 Scope may be omitted (`chore: typo in README`); the slash-set may not be
 invented. The same strings are the `area/*` issue labels and the changelog
@@ -102,7 +102,7 @@ grouping — change the vocabulary only deliberately, in one commit that touches
   (README/§12.3) stay honest because a minor is the only way to get a breaking
   change until 1.0.
 - The envelope `v` field is a **separate axis** — wire compatibility is
-  negotiated via `hello.capabilities` (ARCHITECTURE.md §8), not git tags.
+  negotiated via `hello.capabilities` (docs/ARCHITECTURE.md §8), not git tags.
 - Never hand-edit `version` in `pyproject.toml` or `CHANGELOG.md`;
   release-please owns them.
 

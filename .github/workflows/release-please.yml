@@ -26,7 +26,7 @@ jobs:
           manifest-file: .release-please-manifest.json
 
   # Placeholder: PyPI wheel + ghcr image publish on tag. Enable alongside the
-  # real build (ARCHITECTURE.md §12.5/§12.3); until then publishing by hand is
+  # real build (docs/ARCHITECTURE.md §12.5/§12.3); until then publishing by hand is
   # allowed — the tag + CHANGELOG are the contract.
   publish:
     needs: release-please
