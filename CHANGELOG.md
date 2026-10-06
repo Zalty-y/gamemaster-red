@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.0.1](https://github.com/Zalty-y/gamemaster-red/compare/v0.0.0...v0.0.1) (2026-10-06)
+
+
+### Documentation
+
+* state the real bump map in the PR release-impact checklist ([#22](https://github.com/Zalty-y/gamemaster-red/issues/22)) ([df705ad](https://github.com/Zalty-y/gamemaster-red/commit/df705ad713494ba8f94f116ded7f4a82fd4bdc1c)), closes [#21](https://github.com/Zalty-y/gamemaster-red/issues/21)
+
 ## 0.0.0 (2026-10-06)
 
 
