@@ -3,7 +3,7 @@
 
 [project]
 name = "gamemaster-red"
-version = "0.0.0"
+version = "0.1.0"
 description = "The AI gamemaster layer for your Minecraft server — meet Red."
 readme = "README.md"
 license = "MIT"
