@@ -1,7 +1,7 @@
 # gamemaster-red Architecture
 
 **Status:** permanent contract · v0 draft. This file describes *what the
-system is*; [MVP.md](MVP.md) describes *what we are building first* — scope,
+system is*; [`MVP.md`](MVP.md) describes *what we are building first* — scope,
 acceptance budget, conformance suite, deferred list. Nothing here schedules
 anything; a section describes a design, a milestone decides when.
 **§12 is normative for anything the user has to type, read, or install.**
@@ -218,7 +218,7 @@ runtime surprise.
 ## 4. Adapter Logtail — log tail + RCON
 
 **The exemplar adapter.** Everything below is its conformance spec — the
-build scope and acceptance rows live in [MVP.md](MVP.md) §2. Every future
+build scope and acceptance rows live in [`MVP.md`](MVP.md) §2. Every future
 adapter is written against this bar.
 
 **Promise:** zero-install observation of chat/join/leave/death/advancement
@@ -407,7 +407,7 @@ line timestamps (no `world.time` events exist) — document it as
   Pre-1.0, breaking user-facing changes bump the **minor** (the `@0.3` pin
   channel in §12.3 only means something if minors are the breaking boundary);
   `1.0.0` gates on envelope v1 frozen + API stable. Commit grammar, branch
-  names, and the release flow: [`CONTRIBUTING.md`](CONTRIBUTING.md).
+  names, and the release flow: [`CONTRIBUTING.md`](../CONTRIBUTING.md).
 
 ## 9. Testing strategy
 
@@ -487,7 +487,7 @@ input to the user.
 ### 12.1 Acceptance budget
 
 The budget rows themselves are a milestone's definition-of-done and live in
-[MVP.md](MVP.md) §3, with a measured-value column per release. The doctrine
+[`MVP.md`](MVP.md) §3, with a measured-value column per release. The doctrine
 is permanent and lives here: a capability that needs a hand-edited file
 before its first reply is a capability specified wrong — and the budget's
 "every failure says what to do" row is why `doctor` exists (§12.6): every
